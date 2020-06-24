@@ -23,14 +23,14 @@ const port = 8000
 app.use(function validateBearerToken(req, res, next) {
 
   const authToken = req.get('Authorization')
-  const apiToken = process.env.API_TOKEN
+  const apiToken = 'Bearer ' + process.env.API_TOKEN
 
 
   console.log(process.env.API_TOKEN)
   console.log(authToken)
   debugger
   if ( authToken !== apiToken) {
-    return res.status(401).json({ error: 'unauthorized you dummy' })
+    return res.status(401).json({ error: 'unauthorized' })
   }
   next()
 })
